@@ -3,11 +3,12 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from conftest import driver
 from locators import TestLocators
+from url import main_page, authorization_page
 
 
-class TestAccount:
-    def test_enter_in_account(self, driver):  # Переход в Личный кабинет по клику на «Личный кабинет».
-        driver.get(TestLocators.main_page)
+class TestAccountOut:
+    def test_quit_out_of_account(self, driver):  # Выход из аккаунта по кнопке «Выйти» в личном кабинете.
+        driver.get(main_page)
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.PERSONAL_ACCOUNT_BUTTON)))
         driver.find_element(By.XPATH, TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.INPUT_EMAIL)))
@@ -16,4 +17,6 @@ class TestAccount:
         driver.find_element(By.XPATH, TestLocators.ENTER_BUTTON).click()
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.PERSONAL_ACCOUNT_BUTTON)))
         driver.find_element(By.XPATH, TestLocators.PERSONAL_ACCOUNT_BUTTON).click()
-        assert WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.SAVE_BUTTON)))
+        WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.EXIT_TEXT_BUTTON)))
+        driver.find_element(By.XPATH, TestLocators.EXIT_TEXT_BUTTON).click()
+        assert WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located((By.XPATH, TestLocators.ENTER_BUTTON))) and driver.current_url == authorization_page

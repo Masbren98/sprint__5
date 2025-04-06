@@ -32,10 +32,3 @@ class TestLocators:
     # Мои данные для входа
     my_email = 'maria_brenchaninova_20_985@yandex.ru'
     my_password = '123456789'
-
-    # Ссылки для работы
-    main_page = 'https://stellarburgers.nomoreparties.site/'
-    register_page = 'https://stellarburgers.nomoreparties.site/register'
-    authorization_page = 'https://stellarburgers.nomoreparties.site/login'
-    recovery_pass_page = 'https://stellarburgers.nomoreparties.site/forgot-password'
-    profile_page = 'https://stellarburgers.nomoreparties.site/account/profile'
